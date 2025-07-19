@@ -1,0 +1,2 @@
+node_modules
+/* here we do include those files which are required to be ignored by prettier */
