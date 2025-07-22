@@ -67,25 +67,27 @@ const Register = () => {
               <Button type='submit'>Create Account</Button>
             </Form>
 
-            <p className='mt-4 text-sm'>
+            <p className='text-bodyMedium
+            text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>
               Already have an account?{' '}
               <Link
                 to='/login'
-                className='text-blue-600 hover:underline'
+                className='link inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
               >
                 Sign in
               </Link>
             </p>
           </div>
+          <p className='mt-auto mx-auto text-light-onSurface dark:text-dark-onSurface text-bodyMedium lg:mx-0'>&copy:2025 codewithDipti.All right reserved</p>
         </div>
 
-        <div className=''>
+        <div className='hidden img-box lg:block lg:relative lg:rounded-large'>
           <img
             src={banner}
-            alt='Banner'
+            alt=''
             className='w-full h-full object-cover rounded-lg'
           />
-          <p className='absolute bottom-4 left-4 text-white text-lg bg-black bg-opacity-50 px-3 py-1 rounded'>
+          <p className=''>
             Charge with Phoneix to supercharge your ideas
           </p>
         </div>
