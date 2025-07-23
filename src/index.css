@@ -183,3 +183,17 @@
   }
 
 }
+
+@layer utilities{
+  .img-box{
+    @apply bg-light-surfaceContainerHighest
+    dark:bg-dark-surfaceContainerHighest
+    overflow-hidden;
+  }
+
+  .img-cover{
+    @apply w-full
+    h-full
+    object-cover;
+  }
+}

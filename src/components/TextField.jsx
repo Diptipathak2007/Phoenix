@@ -17,7 +17,7 @@ const TextField = ({
     className="label-text">
         {label}
     </label>
-    <input className={`text-field${fieldclasses}`} id={name} placeholder={placeholder} {...rest} />
+    <input className={`text-field${fieldclasses}`} id={name} name={name} placeholder={placeholder} {...rest} />
     {helperText && <p className="helper-text">{helperText}</p>}
    </div>
   )
