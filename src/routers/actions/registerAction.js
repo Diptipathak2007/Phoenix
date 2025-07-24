@@ -27,7 +27,7 @@ const registerAction = async ({ request }) => {
        return redirect('/login')
        
     }
-    console.log("Redirecting to homepage...");
+    
     return redirect('/');
 }
 

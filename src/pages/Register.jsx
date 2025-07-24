@@ -5,9 +5,16 @@ import { logolight, logodark, banner } from '../assets/assets';
 import TextField from '../components/TextField';
 import { Button } from '../components/Button';
 import { Form } from 'react-router-dom';
-
+import { useNavigation,useActionData } from 'react-router-dom';
+import { CircularProgress } from '../components/Progress';
+import { useEffect } from 'react';
 
 const Register = () => {
+  const error=useActionData();
+  useEffect(()=>{},[error])//show the snackbar with the provided error
+  
+  const navigation = useNavigation();
+  console.log(navigation.state);
   return (
     <>
       <PageTitle title='Create an Account' />
@@ -42,7 +49,10 @@ const Register = () => {
               supercharge your productivity.
             </p>
 
-            <Form method='POST' className='grid grid-cols-1 gap-4'>
+            <Form
+              method='POST'
+              className='grid grid-cols-1 gap-4'
+            >
               <TextField
                 type='text'
                 name='name'
@@ -65,7 +75,15 @@ const Register = () => {
                 placeholder='Enter your Password'
                 required
               />
-              <Button type='submit'>Create Account</Button>
+              <Button 
+              type='submit'
+              diabled={navigation.state === 'submitting'}
+              >
+                
+                {navigation.state === 'submitting'
+                  ? (<CircularProgress size="small"/>)
+                  : 'Create Account'}
+              </Button>
             </Form>
 
             <p className='text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>
