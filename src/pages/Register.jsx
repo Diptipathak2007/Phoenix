@@ -6,12 +6,24 @@ import TextField from '../components/TextField';
 import { Button } from '../components/Button';
 import { Form } from 'react-router-dom';
 import { useNavigation,useActionData } from 'react-router-dom';
-import { CircularProgress } from '../components/Progress';
+import { CircularProgress,LinearProgress } from '../components/Progress';
 import { useEffect } from 'react';
+import { useSnackbar } from '../hooks/useSnackbar';
+import { AnimatePresence } from 'framer-motion';
 
 const Register = () => {
   const error=useActionData();
-  useEffect(()=>{},[error])//show the snackbar with the provided error
+  const {showSnackbar} = useSnackbar();
+  useEffect(()=>{
+    if(error?.message){
+      showSnackbar({
+        message: error.message,
+        type: 'error',
+        timeOut: 500000000,
+       
+      });
+    }
+  },[error,showSnackbar])//show the snackbar with the provided error
   
   const navigation = useNavigation();
   console.log(navigation.state);
@@ -112,6 +124,13 @@ const Register = () => {
           </p>
         </div>
       </div>
+      <AnimatePresence>
+      {navigation.state === "loading"&&(
+        <LinearProgress classes='absolute top-0 left-0 right-0' />
+      )}
+      </AnimatePresence>
+
+      
     </>
   );
 };
