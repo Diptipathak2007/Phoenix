@@ -11,7 +11,7 @@ import { useEffect } from 'react';
 import { useSnackbar } from '../hooks/useSnackbar';
 import { AnimatePresence } from 'framer-motion';
 
-const Register = () => {
+const ResetPassword = () => {
   const error=useActionData();
   const {showSnackbar} = useSnackbar();
   useEffect(()=>{
@@ -29,7 +29,7 @@ const Register = () => {
   console.log(navigation.state);
   return (
     <>
-      <PageTitle title='Create an Account' />
+      <PageTitle title='New Password' />
 
       <div className='relative w-screen h-dvh p-4 grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2'>
         <div className='flex flex-col p-4'>
@@ -54,39 +54,28 @@ const Register = () => {
           </Link>
           <div className='flex flex-col gap-2 max-w-[480px] w-full mx-auto'>
             <h2 className='text-displaysmall font-semibold text-light-onBackground dark:text-dark-onBackground text-center'>
-              Create an Account
+              Set a new Password
             </h2>
             <p className='text-bodyLarge text-light-onSurfacVariant dark:text-dark-onSurfaceVariant mt-1 mb-5 text-center px-2'>
-              Register today and gain access to powerful tools that will
-              supercharge your productivity.
+                Please choose a password that has&apos;nt been user before.Must be at least 8 characters long
             </p>
 
             <Form
               method='POST'
               className='grid grid-cols-1 gap-4'
             >
-              <TextField
-                type='text'
-                name='name'
-                label='Full Name'
-                placeholder='Full Name'
-                required
-                autoFocus
-              />
-              <TextField
-                type='email'
-                name='email'
-                label='Email Address'
-                placeholder='Email Address'
-                required
-              />
+              
+              
               <TextField
                 type='password'
                 name='password'
                 label='Password'
-                placeholder='Enter your Password'
-                required
+                placeholder='New Password'
+                required={true}
+                autofocus={true}
               />
+
+              
               <Button 
               type='submit'
               diabled={navigation.state === 'submitting'}
@@ -94,19 +83,11 @@ const Register = () => {
                 
                 {navigation.state === 'submitting'
                   ? (<CircularProgress size="small"/>)
-                  : 'Create Account'}
+                  : 'Reset Password'}
               </Button>
             </Form>
 
-            <p className='text-bodyMedium text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant text-center mt-4'>
-              Already have an account?{' '}
-              <Link
-                to='/login'
-                className='link text-labelLarge inline-block ms-1 text-light-onSurface dark:text-dark-onSurface'
-              >
-                Sign in
-              </Link>
-            </p>
+            
           </div>
           <p className='mt-auto mx-auto text-light-onSurface dark:text-dark-onSurface text-bodyMedium lg:mx-0'>
             &copy;2025 codewithDipti. All rights reserved
@@ -135,4 +116,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default ResetPassword;
