@@ -1,18 +1,17 @@
+// src/routes/loaders/loginLoader.js
 import { redirect } from 'react-router-dom';
 import { account } from '../../lib/appwrite';
 
-const loginLoader = async ({  }) => {
-    try {
-        //attempt to retrieve the user's account information
-        await account.get();
-        
-    } catch (err) {
-        console.log(`Error fetching user: ${err.message}`);
-        return null;
-    }
-
-    //if the user is authenticated, redirect to the home page
+const loginLoader = async () => {
+  try {
+    const user = await account.get();
+    // if session exists, go to home
     return redirect('/');
-}
+  } catch (err) {
+    console.warn(`Unauthenticated: ${err.message}`);
+    // Stay on login page
+    return null;
+  }
+};
 
 export default loginLoader;

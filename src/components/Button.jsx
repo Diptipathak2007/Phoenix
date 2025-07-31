@@ -1,6 +1,10 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 /*
-Here by I am creating a common button component */
+  Common Button Component
+  Supports variant, color, and custom classes
+*/
 const Button = ({
   classes = '',
   variant = 'filled',
@@ -25,27 +29,47 @@ Button.propTypes = {
   children: PropTypes.any,
 };
 
-{/*icon button*/}
+// Icon Button Component
+const Iconbtn = ({ classes = '', icon, size = '', children, ...rest }) => {
+  return (
+    <button
+      className={`icon-btn ${size} ${classes}`}
+      {...rest}
+    >
+      {children}
+      {!children && (
+        <span className='material-symbols-rounded icon'>{icon}</span>
+      )}
+      <div className='state-layer'></div>
+    </button>
+  );
+};
 
-const Iconbtn=({classes='',icon,size='',children,...rest})=>{
-  return <button className={`icon-btn ${size} ${classes}`}{...rest}>
-    {children}
-    {!children && (<span className={`material-symbols-rounded icon-${size}`}>
-      {icon}
-    </span>)
-    }
-    <div className="state-layer"></div>
-  </button>
-}
-
-Iconbtn.propTypes={
+Iconbtn.propTypes = {
   classes: PropTypes.string,
   icon: PropTypes.string,
   size: PropTypes.string,
   children: PropTypes.any,
+};
+
+const ExtendedFab = ({ href, text, classes = '', ...rest }) => {
+  return (
+    <Link
+      to={href}
+      className={`extended-fab ${classes}`}
+      {...rest}
+    >
+      <span className='material-symbols-rounded'>add</span>
+      <span className='truncate'>{text}</span>
+      <div className='state-layer'></div>
+    </Link>
+  );
+};
+
+ExtendedFab.propTypes = {
+  href: PropTypes.string,
+  text: PropTypes.string,
+  classes: PropTypes.string,
 }
 
-export { Button,Iconbtn };
-
-
-
+export { Button, Iconbtn, ExtendedFab };

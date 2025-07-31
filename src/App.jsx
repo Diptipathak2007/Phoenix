@@ -1,14 +1,18 @@
 import PageTitle from './components/PageTitle';
 import React from 'react';
 import TopAppBar from './components/TopAppBar';
+import Sidebar from './components/Sidebar';
 
 const App = () => {
   return (
     <>
-      <PageTitle title='Phoneix-chat to supercharge your ideas' />
+      <PageTitle title='Phoenix-chat to supercharge your ideas' />
       
       <div className=''>
         {/*sidebar*/}
+        <Sidebar/>
+
+        {/* main content */}
         <div className=''>
           {/*top app bar*/}
           <TopAppBar/>
@@ -20,7 +24,7 @@ const App = () => {
           {/* prompt field */}
           <div className="">
             <p className=''>
-              Phoneix may display inaccurate info,including about people,so kindly double-check its responses.
+              Phoenix may display inaccurate info,including about people,so kindly double-check its responses.
               <a 
               href="https://support.google.com/gemini?p=privacy-notice"
               target='_blank'
