@@ -10,19 +10,20 @@ const Sidebar = () => {
     <>
       <div className='sidebar active'>
         <div className='sidebar-inner'>
-          <div className=''>
+          <div className='h-16 grid items-center px-4 mb-4'>
             <Logo />
           </div>
           <ExtendedFab
             href='/'
             text='New chat'
             classes=''
+            
           />
-          <div className=''>
-            <p className=''>Recent</p>
+          <div className='overflow-y-auto -me-2 pe-1'>
+            <p className='text-titleSmall h-9 grid items-center px-4 '>Recent</p>
 
             <nav>
-              <div className=''>
+              <div className='relative group'>
                 <NavLink
                   to=''
                   className='nav-link'
@@ -48,7 +49,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className={`overlay`}></div>
+      <div className={`overlay active`}></div>
     </>
   );
 };
