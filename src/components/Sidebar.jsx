@@ -4,11 +4,19 @@ import React from 'react';
 import Logo from './Logo';
 import { ExtendedFab } from './Button';
 import { Iconbtn } from './Button';
+import {motion} from 'framer-motion';
 
-const Sidebar = () => {
+
+const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
+ 
+
   return (
     <>
-      <div className='sidebar active'>
+      <motion.div 
+      initial={{opacity:0}}
+      animate={{opacity:1}}
+      transition={{duration:0.2,ease:'easeOut'}}
+      className={`sidebar ${isSidebarOpen?'active':''}`}>
         <div className='sidebar-inner'>
           <div className='h-16 grid items-center px-4 mb-4'>
             <Logo />
@@ -17,10 +25,12 @@ const Sidebar = () => {
             href='/'
             text='New chat'
             classes=''
-            
+            onClick={toggleSidebar}
           />
           <div className='overflow-y-auto -me-2 pe-1'>
-            <p className='text-titleSmall h-9 grid items-center px-4 '>Recent</p>
+            <p className='text-titleSmall h-9 grid items-center px-4 '>
+              Recent
+            </p>
 
             <nav>
               <div className='relative group'>
@@ -28,6 +38,7 @@ const Sidebar = () => {
                   to=''
                   className='nav-link'
                   title=''
+                  onClick={toggleSidebar}
                 >
                   <span className='material-symbols-rounded icon-small'>
                     chat-bubble
@@ -38,20 +49,35 @@ const Sidebar = () => {
                 <Iconbtn
                   icon='delete'
                   size='small'
-                  classes=''
+                  classes='absolute top-1/2 right-1.5 -translate-y-1/2 z-10 opacity-0 group:hover:opacity-100 group-focus-within:opacity-100 hidden lg:grid'
                   title='Delete'
                 />
               </div>
             </nav>
           </div>
 
-          <div className=''>&copy; 2025codewithDipti</div>
+          <div
+            className='mt-4 h-14 px-4 grid items-center text-labelLarge
+           text-light-onSurfaceVariant
+            dark:text-dark-onSurfaceVariant 
+            border-t
+             border-dark-surfaceContainerHigh 
+             dark:border-dark-surfacecContainerHigh 
+             truncate'
+          >
+            &copy; 2025codewithDipti
+          </div>
         </div>
-      </div>
+      </motion.div>
 
-      <div className={`overlay active`}></div>
+      <div className={`overlay ${isSidebarOpen?'active':''}`} onClick={toggleSidebar}></div>
     </>
   );
+};
+
+Sidebar.propTypes = {
+  isSidebarOpen: PropTypes.bool,
+  toggleSidebar: PropTypes.func,
 };
 
 export default Sidebar;

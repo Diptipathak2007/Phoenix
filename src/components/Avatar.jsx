@@ -16,7 +16,7 @@ const Avatar = ({ name = '', userId }) => {
     : 'U'; // fallback initials
 
   return (
-    <figure className="avatar w-10 h-10 rounded-full bg-orange-200 grid place-items-center text-sm font-semibold text-gray-700 overflow-hidden">
+    <figure className="avatar w-10 h-8 rounded-5xl bg-orange-400 grid place-items-center text-sm font-semibold text-gray-700 overflow-hidden">
       {imageUrl ? (
         <img
           src={imageUrl}

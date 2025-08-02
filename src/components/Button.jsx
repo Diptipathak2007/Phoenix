@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 /*
   Common Button Component
@@ -32,7 +33,7 @@ Button.propTypes = {
 // Icon Button Component
 const Iconbtn = ({ classes = '', icon, size = '', children, ...rest }) => {
   return (
-    <button
+    <motion.button
       className={`icon-btn ${size} ${classes}`}
       {...rest}
     >
@@ -41,7 +42,7 @@ const Iconbtn = ({ classes = '', icon, size = '', children, ...rest }) => {
         <span className='material-symbols-rounded icon'>{icon}</span>
       )}
       <div className='state-layer'></div>
-    </button>
+    </motion.button>
   );
 };
 

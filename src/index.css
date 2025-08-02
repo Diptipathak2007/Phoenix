@@ -171,7 +171,7 @@
   }
   :has(> .state-layer):where(:focus, :focus-visble, :focus-within)
     > .state-layer {
-    @apply opacity-20;
+      @apply opacity-20; 
   }
 
   .link {
@@ -337,7 +337,7 @@
     top-0
     left-0
     h-dvh
-   
+    w-0
     max-w-[80vw]
     rounded-e-large
     shadow-elevation1
@@ -422,6 +422,7 @@
     ease-standard
     hover:shadow-elevation2
     focus:shadow-elevation1
+    outline-none
   }
   @media (prefers-color-scheme: dark) {
     .extended-fab {
@@ -448,12 +449,66 @@
     rounded-full
     ps-4
     pe-10
+    outline-none
+    
+  }
+  .nav-link.active{
+    --state-layer-bg: theme('colors.light.onSecondaryContainer');
+    @apply bg-light-secondaryContainer
+    dark:bg-dark-secondaryContainer
+    text-light-onSecondaryContainer
+    dark:text-dark-onSecondaryContainer;
   }
   @media (prefers-color-scheme: dark) {
     .nav-link {
       --state-layer-bg: theme('colors.dark.onSurfaceVariant');
     }
+
+    .nav-link.active {
+      --state-layer-bg: theme('colors.dark.onSecondaryContainer');
+      
+    }
   }
+  .prompt-field-container{
+    --state-layer-bg: theme('colors.light.onSurfaceVariant');
+    @apply bg-light-surfaceContainer
+    dark:bg-dark-surfaceContainer
+    min-h-16
+    rounded-full
+    flex
+    items-end
+    flex-wrap
+    p-2
+    cursor-text
+  }
+  @media (prefers-color-scheme: dark) {
+    .prompt-field-container {
+      --state-layer-bg: theme('colors.dark.onSurfaceVariant');
+    }
+  }
+  .prompt-field {
+    @apply text-light-onSurface
+           dark:text-dark-onSurface 
+           text-bodyLarge 
+           relative 
+           outline-none 
+           grow 
+           mx-4 
+           py-3 
+           max-h-[230px] 
+           overflow-y-auto 
+           whitespace-pre-wrap;
+  }
+  
+  /* Apply placeholder only when empty */
+  .prompt-field::after {
+    content: attr(data-placeholder);
+    @apply text-light-onSurfaceVariant/90 dark:text-dark-onSurfaceVariant/90 absolute left-0 top-1/2 -translate-y-1/2 pointer-events-none;
+  }
+  
+  
+ 
+
 
 }
 
@@ -481,5 +536,9 @@
     h-[1em]
     min-h-[1em]
     overflow-hidden;
+  }
+
+  .icon-small{
+    @apply text-[18px]
   }
 }
