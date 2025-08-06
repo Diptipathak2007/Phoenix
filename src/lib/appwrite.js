@@ -1,5 +1,5 @@
 // src/lib/appwrite.js
-import { Client, Account,Avatars } from "appwrite";
+import { Client, Account,Avatars,Databases } from "appwrite";
 
 const client = new Client();
 
@@ -11,6 +11,8 @@ const account = new Account(client);
 
 const avatars = new Avatars(client);
 
+const databases = new Databases(client, import.meta.env.VITE_APPWRITE_DATABASE_ID);
 
-export { client, account, avatars };
+
+export { client, account, avatars,databases };
 
