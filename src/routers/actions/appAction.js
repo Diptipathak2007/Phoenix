@@ -1,5 +1,5 @@
 import { account,databases } from "../../lib/appwrite"
-import { getConversationTitle } from "../../api/googleAi";
+import { getConversationTitle,getAiResponse } from "../../api/googleAi";
 import generateid from "../../utils/generateId";
 
 const userPromptAction=async(formData)=>{
@@ -26,9 +26,29 @@ const userPromptAction=async(formData)=>{
    }
 
    //get a conversation title based on the user prompt
+   //generate an ai response based on the user prompt
 
+   const aiResponse=await getAiResponse(userPrompt);
+   try {
+    //create a new document in the chats collections
+    await databases.createDocument(
+        import.meta.env.VITE_APPWRITE_DATABASE_ID,
+        'chats',
+        generateid(),
+        {
+            user_prompt:userPrompt,
+            ai_response:aiResponse,
+            conversation:conversation.$id,
+        },
+
+    )
+   } catch (err) {
+    console.log(`Error creating the chat:${err.message}`);
+   }
    return null
 }
+
+
 
 const appAction=async({request})=>{
     const formData=await request.formData();

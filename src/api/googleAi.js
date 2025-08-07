@@ -12,4 +12,16 @@ const getConversationTitle = async (userPrompt) => {
         console.error("Error in generating title:", err);
     }
 }
-export {getConversationTitle}
+
+const getAiResponse = async (userPrompt,chats=[]) => {
+  try {
+    model.generationConfig={temperature:1.5}
+    const chat=model.startChat({history:chats});
+    const result=await chat.sendMessage(userPrompt);
+
+    return result.response.text()
+  } catch (err) {
+    console.error("Error in generating AI response:", err.message);
+  }
+}
+export {getConversationTitle,getAiResponse}
