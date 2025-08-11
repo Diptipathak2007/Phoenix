@@ -4,9 +4,13 @@ import TopAppBar from './components/TopAppBar';
 import { useToggle } from './hooks/useToggle';
 import Sidebar from './components/Sidebar';
 import Greetings from './pages/Greetings';
-import {motion} from 'framer-motion';
+import { motion } from 'framer-motion';
 import PromptField from './components/PromptField';
+import { Outlet, useParams } from 'react-router-dom';
 const App = () => {
+  //Get the url parameters
+  const params = useParams();
+
   const [isSidebarOpen, toggleSidebar] = useToggle();
   return (
     <>
@@ -27,19 +31,19 @@ const App = () => {
           {/* Greetings */}
           <div className='px-5 pb-5 flex flex-col overflow-y-auto '>
             <div className='max-w-[840px] w-full mx-auto grow'>
-              <Greetings />
+              {params.conversationId ? <Outlet /> : <Greetings />}
             </div>
           </div>
           {/* prompt field */}
           <div className='bg-light-background dark:bg-dark-background'>
             <div className='max-w-[870px] px-5 w-full mx-auto '>
               <PromptField />
-              <motion.p 
-              initial={{opacity: 0,translateY:'-4px'}}
-              animate={{opacity:1,translateY:0}}
-              transition={{duration:0.2,delay:'0.8',ease:'easeOut'}}
-
-              className='text-bodySmall text-center text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant p-3'>
+              <motion.p
+                initial={{ opacity: 0, translateY: '-4px' }}
+                animate={{ opacity: 1, translateY: 0 }}
+                transition={{ duration: 0.2, delay: '0.8', ease: 'easeOut' }}
+                className='text-bodySmall text-center text-light-onSurfaceVariant dark:text-dark-onSurfaceVariant p-3'
+              >
                 Phoenix may display inaccurate info,including about people,so
                 kindly double-check its responses.
                 <a

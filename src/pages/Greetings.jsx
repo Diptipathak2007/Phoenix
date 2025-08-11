@@ -2,7 +2,8 @@ import React from 'react'
 import {motion} from 'framer-motion'
 import { useLoaderData } from "react-router-dom"
 const Greetings = () => {
-    const user = useLoaderData();
+    const {user} = useLoaderData();
+   
     
   return (
    

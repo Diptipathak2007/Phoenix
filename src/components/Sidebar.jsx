@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
-import { NavLink } from 'react-router-dom';
-import React from 'react';
+import { NavLink,useLoaderData } from 'react-router-dom';
+import React, { use } from 'react';
 import Logo from './Logo';
 import { ExtendedFab } from './Button';
 import { Iconbtn } from './Button';
@@ -8,7 +8,10 @@ import {motion} from 'framer-motion';
 
 
 const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
- 
+  //Extract conversations from loader data if it exists
+  const { conversation } = useLoaderData() || {};
+  const conversationData = conversation?.documents || [];
+  
 
   return (
     <>
@@ -33,17 +36,21 @@ const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
             </p>
 
             <nav>
-              <div className='relative group'>
+              {conversationData.map((item)=>(
+                <div 
+                key={item.$id} 
+                className='relative group'>
+                
                 <NavLink
-                  to=''
+                  to={item.$id}
                   className='nav-link'
-                  title=''
+                  title={item.title}
                   onClick={toggleSidebar}
                 >
                   <span className='material-symbols-rounded icon-small'>
                     chat-bubble
                   </span>
-                  <span className='truncate'>New conversation</span>
+                  <span className='truncate'>{item.title}</span>
                   <div className='state-layer'></div>
                 </NavLink>
                 <Iconbtn
@@ -53,6 +60,8 @@ const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
                   title='Delete'
                 />
               </div>
+              ))}
+              
             </nav>
           </div>
 

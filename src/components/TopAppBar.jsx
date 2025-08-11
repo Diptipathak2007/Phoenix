@@ -18,7 +18,7 @@ import { useNavigation, useNavigate, useLoaderData } from 'react-router-dom';
 const TopAppBar = ({ toggleSidebar }) => {
   const navigation = useNavigation();
   const navigate = useNavigate();
-  const user = useLoaderData(); // Ensure your route has a loader
+  const {user} = useLoaderData(); // Ensure your route has a loader
 
   const [showMenu, setShowMenu] = useToggle();
 
@@ -55,7 +55,7 @@ const TopAppBar = ({ toggleSidebar }) => {
       </div>
 
       {/* Top Loader */}
-      <AnimatePresence>{isNormalLoad && <LinearProgress />}</AnimatePresence>
+      <AnimatePresence>{isNormalLoad && <LinearProgress classes='absolute top-full left-0 right-0 z-10' />}</AnimatePresence>
     </header>
   );
 };

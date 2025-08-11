@@ -1,3 +1,4 @@
+import { redirect } from "react-router-dom";
 import { account,databases } from "../../lib/appwrite"
 import { getConversationTitle,getAiResponse } from "../../api/googleAi";
 import generateid from "../../utils/generateId";
@@ -45,7 +46,7 @@ const userPromptAction=async(formData)=>{
    } catch (err) {
     console.log(`Error creating the chat:${err.message}`);
    }
-   return null
+   return redirect(`/${conversation.$id}`);
 }
 
 
