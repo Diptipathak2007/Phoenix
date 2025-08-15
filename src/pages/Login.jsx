@@ -20,7 +20,7 @@ const Login = () => {
       showSnackbar({
         message: error.message,
         type: 'error',
-        timeOut: 500000000,
+        timeOut: 3000,
       });
     }
   }, [error, showSnackbar]); //show the snackbar with the provided error

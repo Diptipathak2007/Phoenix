@@ -14,6 +14,10 @@ const App = () => {
   const chatHistoryRef = useRef();
 
   // Router hooks
+  
+
+  // Add this effect
+  
   const params = useParams();
   const navigation = useNavigation();
   const actionData = useActionData();
@@ -28,6 +32,7 @@ const App = () => {
   const isNormalLoad = navigation.state === 'loading' && !navigation.formData;
 
   // Auto-scroll effect when prompt changes or conversation changes
+  
   useEffect(() => {
     if (chatHistoryRef.current) {
       chatHistoryRef.current.scrollTo({
