@@ -1,16 +1,20 @@
 import PropTypes from 'prop-types';
-import { NavLink,useLoaderData } from 'react-router-dom';
+import { NavLink,useLoaderData,useSubmit,useParams } from 'react-router-dom';
 import React, { use } from 'react';
 import Logo from './Logo';
 import { ExtendedFab } from './Button';
 import { Iconbtn } from './Button';
 import {motion} from 'framer-motion';
+import deleteConversation from '../utils/deleteConversation';
 
 
 const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
   //Extract conversations from loader data if it exists
-  const { conversation } = useLoaderData() || {};
-  const conversationData = conversation?.documents || [];
+  const{
+    conversations:{documents:conversationData},
+  }=useLoaderData()||{};
+  const submit=useSubmit()
+  const{conversationId}=useParams()
   
 
   return (
@@ -29,6 +33,7 @@ const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
             text='New chat'
             classes=''
             onClick={toggleSidebar}
+            disabled={!conversationId}
           />
           <div className='overflow-y-auto -me-2 pe-1'>
             <p className='text-titleSmall h-9 grid items-center px-4 '>
@@ -58,6 +63,13 @@ const Sidebar = ({isSidebarOpen,toggleSidebar}) => {
                   size='small'
                   classes='absolute top-1/2 right-1.5 -translate-y-1/2 z-10 opacity-0 group:hover:opacity-100 group-focus-within:opacity-100 hidden lg:grid'
                   title='Delete'
+                  onClick={()=>{
+                    deleteConversation({
+                      id:item.$id,
+                      title:item.title,
+                      submit
+                    })
+                  }}
                 />
               </div>
               ))}

@@ -16,6 +16,9 @@ import appLoader from "./loaders/appLoader.js";
 import appAction from "./actions/appAction.js";
 import Conversation from "../pages/Conversation.jsx";
 import conversationLoader from "./loaders/conversationLoader.js";
+import conversationAction from "./actions/conversationAction.js";
+import ConversationError from "../pages/ConversationError.jsx";
+import RouteError from "../pages/RootError.jsx";
 
 
 const router = createBrowserRouter([
@@ -24,11 +27,14 @@ const router = createBrowserRouter([
         element: <App />,
         loader: appLoader,
         action: appAction,
+        errorElement:<RouteError/>,
         children:[
             {
                 path:"/:conversationId",
                 element:<Conversation/>,
-                loader:conversationLoader
+                loader:conversationLoader,
+                action:conversationAction,
+                errorElement:<ConversationError/>
             }
         ]
     },
