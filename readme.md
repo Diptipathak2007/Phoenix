@@ -72,13 +72,13 @@ Push to the branch: git push origin feature/your-feature
 Open a Pull Request
 Please follow the Code of Conduct and ensure your code passes linting and tests.
 
-License
-This project is licensed under the MIT License.
+
 
 Contact / Author
 Author: Dipti
-Email: dipti@example.com
-GitHub: yourusername
+Email: diptipathak019@gmail.com
+
+
 
 Phoenix – chat to supercharge your ideas!
 
