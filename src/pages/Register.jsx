@@ -7,7 +7,7 @@ import { Button } from '../components/Button';
 import { Form } from 'react-router-dom';
 import { useNavigation, useActionData } from 'react-router-dom';
 import { CircularProgress, LinearProgress } from '../components/Progress';
-import { useEffect } from 'react';
+import { useEffect } from 'react';;
 import { useSnackbar } from '../hooks/useSnackbar';
 import { AnimatePresence } from 'framer-motion';
 import Logo from '../components/Logo';
