@@ -60,7 +60,7 @@ const ResetLink = () => {
 
               <Button
                 type='submit'
-                diabled={navigation.state === 'submitting'}
+                disabled={navigation.state === 'submitting'}
               >
                 {navigation.state === 'submitting' ? (
                   <CircularProgress size='small' />

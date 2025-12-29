@@ -12,6 +12,7 @@
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
     "appwrite": "^18.1.1",
+    "dotenv": "^17.2.3",
     "framer-motion": "^12.23.9",
     "prop-types": "^15.8.1",
     "react": "^19.1.0",

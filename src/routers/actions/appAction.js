@@ -9,7 +9,7 @@ const createConversationAction = async (formData) => {
   const user = await account.get();
 
   // Get AI-generated conversation title
-  const conversationTitle = await getConversationTitle(userPrompt);
+  const conversationTitle = await getConversationTitle(userPrompt) || "New Conversation";
 
   let conversation = null;
 
@@ -29,7 +29,7 @@ const createConversationAction = async (formData) => {
   }
 
   // Generate AI response
-  const aiResponse = await getAiResponse(userPrompt);
+  const aiResponse = await getAiResponse(userPrompt) || "I'm sorry, I couldn't generate a response at this time.";
 
   try {
     // Create first chat message linked to this conversation

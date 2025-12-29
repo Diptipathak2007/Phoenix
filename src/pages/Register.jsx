@@ -1,31 +1,31 @@
 import React from 'react';
 import PageTitle from '../components/PageTitle';
 import { Link } from 'react-router-dom';
-import {  banner } from '../assets/assets';
+import { banner } from '../assets/assets';
 import TextField from '../components/TextField';
 import { Button } from '../components/Button';
 import { Form } from 'react-router-dom';
-import { useNavigation,useActionData } from 'react-router-dom';
-import { CircularProgress,LinearProgress } from '../components/Progress';
+import { useNavigation, useActionData } from 'react-router-dom';
+import { CircularProgress, LinearProgress } from '../components/Progress';
 import { useEffect } from 'react';
 import { useSnackbar } from '../hooks/useSnackbar';
 import { AnimatePresence } from 'framer-motion';
 import Logo from '../components/Logo';
 
 const Register = () => {
-  const error=useActionData();
-  const {showSnackbar} = useSnackbar();
-  useEffect(()=>{
-    if(error?.message){
+  const error = useActionData();
+  const { showSnackbar } = useSnackbar();
+  useEffect(() => {
+    if (error?.message) {
       showSnackbar({
         message: error.message,
         type: 'error',
         timeOut: 500000000,
-       
+
       });
     }
-  },[error,showSnackbar])//show the snackbar with the provided error
-  
+  }, [error, showSnackbar])//show the snackbar with the provided error
+
   const navigation = useNavigation();
   console.log(navigation.state);
   return (
@@ -35,7 +35,7 @@ const Register = () => {
       <div className='relative w-screen h-dvh p-4 grid grid-cols-1 lg:grid-cols-[1fr,1.2fr] lg:gap-2'>
         <div className='flex flex-col p-4'>
           <Logo classes='mb-10 mx-auto lg:mx-0' />
-          
+
           <div className='flex flex-col gap-2 max-w-[480px] w-full mx-auto'>
             <h2 className='mt-40 text-4xl font-extrabold text-light-onBackground dark:text-dark-onBackground text-center'>
               Create an Account
@@ -71,13 +71,13 @@ const Register = () => {
                 placeholder='Enter your Password'
                 required
               />
-              <Button 
-              type='submit'
-              diabled={navigation.state === 'submitting'}
+              <Button
+                type='submit'
+                disabled={navigation.state === 'submitting'}
               >
-                
+
                 {navigation.state === 'submitting'
-                  ? (<CircularProgress size="small"/>)
+                  ? (<CircularProgress size="small" />)
                   : 'Create Account'}
               </Button>
             </Form>
@@ -109,12 +109,12 @@ const Register = () => {
         </div>
       </div>
       <AnimatePresence>
-      {navigation.state === "loading"&&(
-        <LinearProgress classes='absolute top-0 left-0 right-0' />
-      )}
+        {navigation.state === "loading" && (
+          <LinearProgress classes='absolute top-0 left-0 right-0' />
+        )}
       </AnimatePresence>
 
-      
+
     </>
   );
 };
