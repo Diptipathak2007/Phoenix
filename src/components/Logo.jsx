@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { logodark,logolight } from '../assets/assets';
+import { logodark, logolight } from '../assets/assets';
 import React from 'react';
 
-const Logo = ({classes=''}) => {
+const Logo = ({ classes = '' }) => {
   return (
     <Link
       to='/'

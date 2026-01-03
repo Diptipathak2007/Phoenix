@@ -6,22 +6,22 @@ const genAI = new GoogleGenerativeAI(process.env.VITE_GEMINI_API_KEY);
 
 async function listModels() {
   try {
-    console.log("Testing gemini-1.5-flash-8b...");
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash-8b" });
+    const modelsToTest = [
+      "gemini-2.0-flash", 
+      "gemini-flash-latest",
+      "gemini-pro-latest",
+      "gemini-2.0-flash-lite"
+    ];
+    
+    for (const modelName of modelsToTest) {
+      console.log(`Testing ${modelName}...`);
+      try {
+        const model = genAI.getGenerativeModel({ model: modelName });
         const result = await model.generateContent("Hello");
-        console.log("Success with gemini-1.5-flash-8b:", result.response.text());
-    } catch (e) {
-        console.error("Failed with gemini-1.5-flash-8b:", e.message);
-    }
-
-    console.log("Testing gemini-1.5-pro-latest...");
-    try {
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro-latest" });
-        const result = await model.generateContent("Hello");
-        console.log("Success with gemini-1.5-pro-latest:", result.response.text());
-    } catch (e) {
-        console.error("Failed with gemini-1.5-pro-latest:", e.message);
+        console.log(`Success with ${modelName}:`, result.response.text());
+      } catch (e) {
+        console.error(`Failed with ${modelName}:`, e.message);
+      }
     }
 
   } catch (error) {
