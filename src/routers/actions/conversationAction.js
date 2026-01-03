@@ -45,7 +45,7 @@ const conversationAction = async ({ request, params }) => {
       {
         user_prompt: userPrompt,
         ai_response: aiResponse,
-        conversation: conversationId,
+        conversations: conversationId,
       }
     );
   } catch (err) {

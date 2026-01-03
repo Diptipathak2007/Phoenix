@@ -1,5 +1,6 @@
 import { redirect } from 'react-router-dom';
 import { account, databases } from '../../lib/appwrite';
+import { Query } from 'appwrite';
 
 const conversationLoader = async ({ params }) => {
   const { conversationId } = params;
@@ -20,13 +21,23 @@ const conversationLoader = async ({ params }) => {
       throw new Error('Conversation not found or missing title');
     }
 
-    // 4. Return properly structured data
+    // 4. Get chats for this conversation
+    const chats = await databases.listDocuments(
+      import.meta.env.VITE_APPWRITE_DATABASE_ID,
+      "chats",
+      [
+        Query.equal('conversations', conversationId),
+        Query.orderAsc('$createdAt') // Order by creation time
+      ]
+    );
+
+    // 5. Return properly structured data
     return {
       user,
       conversation: {
         id: conversation.$id,
         title: conversation.title,
-        chats: conversation.chats || [],
+        chats: chats.documents || [],
         // Include other needed fields
       }
     };

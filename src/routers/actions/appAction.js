@@ -6,7 +6,13 @@ import generateId from "../../utils/generateId";
 // Handles creating a new conversation and its first message
 const createConversationAction = async (formData) => {
   const userPrompt = formData.get("user_prompt");
-  const user = await account.get();
+  let user;
+  try {
+    user = await account.get();
+  } catch (err) {
+    console.error(`Error getting user account: ${err.message}`);
+    return redirect("/login"); // Redirect to login if not authenticated
+  }
 
   // Get AI-generated conversation title
   const conversationTitle = await getConversationTitle(userPrompt) || "New Conversation";
@@ -26,6 +32,7 @@ const createConversationAction = async (formData) => {
     );
   } catch (error) {
     console.error(`Error creating conversation: ${error.message}`);
+    return null; // Return early if conversation creation fails
   }
 
   // Generate AI response
@@ -40,7 +47,9 @@ const createConversationAction = async (formData) => {
       {
         user_prompt: userPrompt,
         ai_response: aiResponse,
-        conversation: conversation.$id,
+        user_prompt: userPrompt,
+        ai_response: aiResponse,
+        conversations: conversation.$id,
       }
     );
   } catch (err) {
